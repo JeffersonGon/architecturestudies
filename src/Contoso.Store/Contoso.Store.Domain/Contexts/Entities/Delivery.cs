@@ -31,7 +31,7 @@ namespace Contoso.Store.Domain.Contexts.Entities
 
         public void Send()
         {
-
+            Status = EDeliveryStatus.Sent;
         }
     }
 }

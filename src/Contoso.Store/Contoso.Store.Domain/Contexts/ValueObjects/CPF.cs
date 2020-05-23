@@ -14,7 +14,7 @@ namespace Contoso.Store.Domain.Contexts.ValueObjects
             AddNotifications(new ValidationContract()
                 .Requires()
                 .IsTrue(Validate(Number), "Number", "CPF é inválido")
-                .HasMaxLen(Number, 3, "Number", "O CPF não pode conter menos que 11 caracteres"));
+                .HasMaxLen(Number, 11, "Number", "O CPF não pode conter menos que 11 caracteres"));
         }
 
         private bool Validate(string cpf)

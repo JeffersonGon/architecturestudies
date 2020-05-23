@@ -51,7 +51,7 @@ namespace Contoso.Store.Domain.Contexts.Entities
             Status = EOrderStatus.Paid;
         }
 
-        public void Enviar()
+        public void Send()
         {
             var deliveries = new List<Delivery>();
             var count = 1;
