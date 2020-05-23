@@ -8,8 +8,8 @@
   </SourceModelProvider>
   <TargetModelProvider>
     <ProjectBasedModelProvider>
-      <ProjectGuid>{64dbc7f3-c2c9-4236-8b06-6b8cd2d1fc66}</ProjectGuid>
-      <Name>Contoso.Store.SQL.Project</Name>
+      <ProjectGuid>{18df9045-f06b-42f0-8c21-a5904df974d3}</ProjectGuid>
+      <Name>Contoso.Store.SQLProject</Name>
     </ProjectBasedModelProvider>
   </TargetModelProvider>
   <SchemaCompareSettingsService>
@@ -302,7 +302,7 @@
       </PropertyElementName>
       <PropertyElementName>
         <Name>TargetDatabaseName</Name>
-        <Value>Contoso.Store.SQL.Project</Value>
+        <Value>Contoso.Store.SQLProject</Value>
       </PropertyElementName>
       <PropertyElementName>
         <Name>TargetConnectionString</Name>

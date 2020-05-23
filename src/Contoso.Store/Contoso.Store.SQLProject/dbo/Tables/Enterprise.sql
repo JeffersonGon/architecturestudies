@@ -6,8 +6,6 @@
 );
 
 
-
-
 GO
 CREATE UNIQUE NONCLUSTERED INDEX [UN_Enterprise_Nome]
     ON [dbo].[Enterprise]([Nome] ASC);

@@ -25,7 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contoso.Store.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Constoso.Store.Application", "Constoso.Store.Application\Constoso.Store.Application.csproj", "{537C65F3-0D59-4DCC-8418-E200A46BBF10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.Store.API", "Contoso.Store.API\Contoso.Store.API.csproj", "{0FBE669D-4618-4154-A13A-2337B1CA4CE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contoso.Store.API", "Contoso.Store.API\Contoso.Store.API.csproj", "{0FBE669D-4618-4154-A13A-2337B1CA4CE5}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Contoso.Store.SQLProject", "Contoso.Store.SQLProject\Contoso.Store.SQLProject.sqlproj", "{18DF9045-F06B-42F0-8C21-A5904DF974D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,12 @@ Global
 		{0FBE669D-4618-4154-A13A-2337B1CA4CE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FBE669D-4618-4154-A13A-2337B1CA4CE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FBE669D-4618-4154-A13A-2337B1CA4CE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18DF9045-F06B-42F0-8C21-A5904DF974D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18DF9045-F06B-42F0-8C21-A5904DF974D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18DF9045-F06B-42F0-8C21-A5904DF974D3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{18DF9045-F06B-42F0-8C21-A5904DF974D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18DF9045-F06B-42F0-8C21-A5904DF974D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18DF9045-F06B-42F0-8C21-A5904DF974D3}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +76,7 @@ Global
 		{F0E695FD-7A8F-42BD-A64D-A8CB432B2043} = {A8E1A23F-CFD8-4348-83F9-96A9923E28EF}
 		{537C65F3-0D59-4DCC-8418-E200A46BBF10} = {A38E59F1-DABB-4F0C-A8E0-6FD65607DC0F}
 		{0FBE669D-4618-4154-A13A-2337B1CA4CE5} = {354AAC51-8951-4A43-8CA8-CB28A6FC38AE}
+		{18DF9045-F06B-42F0-8C21-A5904DF974D3} = {A8E1A23F-CFD8-4348-83F9-96A9923E28EF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5E5BEAA0-954D-4726-AD23-21946264B608}

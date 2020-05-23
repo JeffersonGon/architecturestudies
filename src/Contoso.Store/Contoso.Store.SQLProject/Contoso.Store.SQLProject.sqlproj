@@ -6,7 +6,7 @@
     <Name>Contoso.Store.SQLProject</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{ba65846a-0ec2-42b2-8f7f-b0f56cf7041e}</ProjectGuid>
+    <ProjectGuid>{18df9045-f06b-42f0-8c21-a5904df974d3}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
@@ -67,8 +67,5 @@
     <Build Include="dbo\Tables\Endereco.sql" />
     <Build Include="dbo\Tables\Delivery.sql" />
     <Build Include="dbo\Tables\Cliente.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="DatabaseCompare.scmp" />
   </ItemGroup>
 </Project>
