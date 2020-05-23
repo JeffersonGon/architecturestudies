@@ -7,7 +7,12 @@ namespace Contoso.Store.Domain.Contexts.Entities
 {
     public class Product : Entity
     {
-        public Product(string title, string description, string image, decimal price, int stockQuantity)
+        public Product(
+            string title,
+            string description,
+            string image,
+            decimal price,
+            int stockQuantity)
         {
             Title = title;
             Description = description;
@@ -24,7 +29,7 @@ namespace Contoso.Store.Domain.Contexts.Entities
 
         public void WidthdrawStockQuantity(int quantity)
         {
-            StockQuantity = quantity;
+            StockQuantity -= quantity;
         }
     }
 }
