@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Contoso.Store.Infrastructure.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +34,8 @@ namespace Contoso.Store.API
                 Title = "API Contoso Store"
             }));
 
+            RegisterServices(services);
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -49,6 +52,7 @@ namespace Contoso.Store.API
                 app.UseHsts();
             }
 
+            app.UseCors();
             app.UseSwagger();
             app.UseSwaggerUI(s => {
                 s.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1.0");
@@ -56,6 +60,11 @@ namespace Contoso.Store.API
 
             app.UseHttpsRedirection();
             app.UseMvc();
+        }
+
+        private void RegisterServices(IServiceCollection services)
+        {
+            new Bootstrapper().BootstrapperRegisterServices(services);
         }
     }
 }
