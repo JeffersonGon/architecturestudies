@@ -17,29 +17,34 @@ namespace Contoso.Store.Infrastructure.DataAccess.Dapper.Repositories
         {
             _context = context;
         }
-        public GetCustomerQueryResult GetByCpf(string cpf) => _context
-                .Connection
-                .Query<GetCustomerQueryResult>(
-                 @"SELECT Nome, Documento FROM [dbo].[Cliente] Where Documento = @Cpf",
-                 param: new { Cpf = cpf })
-                .FirstOrDefault();
 
-        public void Save(Customer model, int id)
+        IList<GetCustomerQueryResult> IRepository<Customer, GetCustomerQueryResult>.GetAll() => _context
+            .Connection
+            .Query<GetCustomerQueryResult>(
+            "SELECT Nome, Documento, Telefone, Email FROM [dbo].[Cliente]")
+            .ToList();
+
+        public GetCustomerQueryResult GetByCpf(string cpf) => _context
+            .Connection
+            .Query<GetCustomerQueryResult>(
+                @"SELECT Nome, Documento, Telefone, Email FROM [dbo].[Cliente] Where Documento = @Cpf",
+                param: new { Cpf = cpf })
+            .FirstOrDefault();
+
+        public void Save(Customer model)
         {
-            if (id > 0) //Update
-            {
-                _context.Connection.ExecuteScalar(
-                    "UPDATE Cliente SET Nome = @Nome, Documento = @Documento, Email = @Email, Telefone = @Telefone Where Id = @Id",
-                    param: new { Id = id, Nome = model.Name, Documento = model.CPF.Number, Email = model.Email.Address, Telefone = model.Telefone }
-                );
-            }
-            else //insert
-            {
-                _context.Connection.ExecuteScalar(
+            _context.Connection.ExecuteScalar(
                 "INSERT INTO Cliente (Id, Nome, Documento, Email, Telefone) VALUES (@Id, @Nome, @Documento, @Email, @Telefone);",
                 param: new { Id = model.Id, Nome = model.Name.ToString(), Documento = model.CPF.Number, Email = model.Email.Address, Telefone = model.Telefone }
-                );
-            }
+            );
+        }
+
+        public void Update(Customer model)
+        {
+            _context.Connection.ExecuteScalar(
+                "UPDATE Cliente SET Nome = @Nome, Documento = @Documento, Email = @Email, Telefone = @Telefone Where Id = @Documento",
+                param: new { Id = model.Id, Nome = model.Name, Documento = model.CPF.Number, Email = model.Email.Address, Telefone = model.Telefone }
+            );
         }
     }
 }

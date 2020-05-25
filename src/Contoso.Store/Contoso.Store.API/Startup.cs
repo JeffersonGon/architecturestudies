@@ -34,7 +34,7 @@ namespace Contoso.Store.API
                 Title = "API Contoso Store"
             }));
 
-            RegisterServices(services);
+            services.BootstrapperRegisterServices();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -62,9 +62,9 @@ namespace Contoso.Store.API
             app.UseMvc();
         }
 
-        private void RegisterServices(IServiceCollection services)
-        {
-            new Bootstrapper().BootstrapperRegisterServices(services);
-        }
+        //private void RegisterServices(IServiceCollection services)
+        //{
+        //    new Bootstrapper().BootstrapperRegisterServices(services);
+        //}
     }
 }

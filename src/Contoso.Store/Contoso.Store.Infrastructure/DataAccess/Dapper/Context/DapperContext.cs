@@ -19,7 +19,10 @@ namespace Contoso.Store.Infrastructure.DataAccess.Dapper.Context
         public void Dispose()
         {
             if (Connection.State != ConnectionState.Closed)
+            {
                 Connection.Close();
+                Connection.Dispose();
+            }
         }
     }
 }

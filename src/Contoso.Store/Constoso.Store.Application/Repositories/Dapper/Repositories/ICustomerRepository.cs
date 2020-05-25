@@ -6,9 +6,8 @@ using System.Text;
 
 namespace Constoso.Store.Application.Repositories.Dapper.Repositories
 {
-    public interface ICustomerRepository
+    public interface ICustomerRepository : IRepository<Customer, GetCustomerQueryResult>
     {
-        void Save(Customer model, int id);
         GetCustomerQueryResult GetByCpf(string cpf);
     }
 }

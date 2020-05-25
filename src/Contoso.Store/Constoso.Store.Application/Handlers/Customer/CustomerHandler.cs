@@ -1,17 +1,19 @@
 ﻿using Constoso.Store.Application.Repositories.Dapper.Repositories;
 using Contoso.Store.Domain.Contexts.Commands.Customer;
 using Contoso.Store.Domain.Contexts.Entities;
+using Contoso.Store.Domain.Contexts.Queries.CustomerQueries;
 using Contoso.Store.Domain.Contexts.ValueObjects;
 using Contoso.Store.Shared.Abstractions;
+using Contoso.Store.Shared.Abstractions.Generic;
+using Contoso.Store.Shared.Abstractions.Queries;
 using Contoso.Store.Shared.Implementations;
 using FluentValidator;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Constoso.Store.Application.Handlers.CustomerHandler
 {
-    public class CustomerHandler : Notifiable, ICommandHandler<CreateCustomerCommand>
+    public class CustomerHandler : Notifiable, ICommandHandler<CreateCustomerCommand>, 
+        IQueryHandler<GetCustomerQueryResult>, IQueryHandler<GetAllCustomersQueryResult>
     {
         private readonly ICustomerRepository _repository;
 
@@ -20,7 +22,7 @@ namespace Constoso.Store.Application.Handlers.CustomerHandler
             _repository = repository;
         }
 
-        public ICommandResult Handle(CreateCustomerCommand command)
+        public IResult Handle(CreateCustomerCommand command)
         {
             var name = new Name(command.Nome, command.Sobrenome);
             var cpf = new CPF(command.Documento);
@@ -33,19 +35,46 @@ namespace Constoso.Store.Application.Handlers.CustomerHandler
             AddNotifications(email.Notifications);
 
             if (Invalid)
-                return new CommandResult(false, "Invalid", Notifications);
+                return new BadRequestResult(false, "Error. Check properties values", Notifications);
 
             try
             {
-                _repository.Save(customer, 0);
+                _repository.Save(customer);
             }
             catch(Exception ex)
             {
-                //TO-DO: Implementar log real
-                throw new Exception("Erro - Handler CustomerHandler" + ex.InnerException);
+                return new ErrorResult(ex.Message, ex.InnerException);
             }
 
-            return new CommandResult(true, "Customer created.", null);
+            return new CommandResult(true, "Customer created", null);
+        }
+
+        public IResult Handle(GetAllCustomersQueryResult query)
+        {
+            try
+            {
+                return new QueryResult(true, _repository.GetAll());
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(ex.Message, ex.InnerException);
+            }
+        }
+
+        public IResult Handle(GetCustomerQueryResult query)
+        {
+            try
+            {
+                var result = _repository.GetByCpf(query.Documento);
+
+                if(result == null)
+                    return new NotFoundResult("Customer not found", null);
+                return new QueryResult(true, result);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(ex.Message, ex.InnerException);
+            }
         }
     }
 }

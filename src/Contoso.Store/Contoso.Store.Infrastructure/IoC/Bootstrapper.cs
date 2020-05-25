@@ -7,13 +7,15 @@ using System.Text;
 
 namespace Contoso.Store.Infrastructure.IoC
 {
-    public class Bootstrapper
+    public static class Bootstrapper
     {
-        public void BootstrapperRegisterServices(IServiceCollection services)
+        public static void BootstrapperRegisterServices(this IServiceCollection services)
         {
             //Application
             new ApplicationBootstrapper().ChildServiceRegister(services);
+            
             //Domain
+            //null
 
             //Repository
             new RepositoryBootstrapper().ChildServiceRegister(services);
